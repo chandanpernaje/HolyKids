@@ -84,16 +84,31 @@ export const getBookById = (id) => {
 };
 
 export const searchBooks = (query) => {
-  const q = query.toLowerCase();
+  const q = (query || '').toLowerCase().trim();
   const results = [];
+  if (!q) return results;
+  
   for (const seriesKey in seriesData) {
     const series = seriesData[seriesKey];
     const allBooks = [...series.books.reader, ...series.books.practice];
     for (const book of allBooks) {
-      if (book.title.toLowerCase().includes(q) || book.shortDesc.toLowerCase().includes(q) || book.subject.toLowerCase().includes(q)) {
+      const searchText = [
+        book.title, 
+        book.shortDesc, 
+        book.subject, 
+        book.type,
+        series.title,
+        series.age
+      ].join(' ').toLowerCase();
+      
+      if (searchText.includes(q)) {
         results.push({ ...book, seriesId: seriesKey, seriesName: series.title });
       }
     }
   }
+  
+  // Sort results alphabetically from A to Z
+  results.sort((a, b) => a.title.localeCompare(b.title));
+  
   return results;
 };

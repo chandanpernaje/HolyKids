@@ -1,0 +1,1313 @@
+/* ==========================================================================
+   Teachers Training & Marketing Section Styles
+   100% Mobile & Desktop Fully Responsive Architecture
+   ========================================================================== */
+
+.tt-section {
+  position: relative;
+  background: linear-gradient(180deg, #f7faff 0%, #fffdf7 50%, #f4f8ff 100%);
+  padding: clamp(45px, 6vw, 85px) 0 clamp(40px, 5vw, 75px);
+  border-top: 1px solid #e7eff8;
+  border-bottom: 1px solid #e7eff8;
+  overflow: hidden;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+/* Background floating decorative elements */
+.tt-bg-glow {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(80px);
+  pointer-events: none;
+  opacity: 0.35;
+  z-index: 0;
+}
+.tt-bg-glow-1 {
+  width: 450px;
+  height: 450px;
+  background: #a4e1fb;
+  top: -100px;
+  left: -150px;
+}
+.tt-bg-glow-2 {
+  width: 500px;
+  height: 500px;
+  background: #ffd885;
+  bottom: 50px;
+  right: -150px;
+}
+.tt-bg-glow-3 {
+  width: 350px;
+  height: 350px;
+  background: #f8c9df;
+  top: 45%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.tt-container {
+  position: relative;
+  z-index: 1;
+  max-width: 1240px;
+  width: 100%;
+  margin: 0 auto;
+  box-sizing: border-box;
+}
+
+/* ==========================================================================
+   Header & Eyebrow
+   ========================================================================== */
+.tt-header {
+  text-align: center;
+  max-width: 860px;
+  margin: 0 auto clamp(30px, 5vw, 50px);
+}
+
+.tt-badge-group {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  background: #fff;
+  border: 1.5px solid #ddecfa;
+  border-radius: 30px;
+  padding: 6px 18px;
+  font-size: clamp(11.5px, 2vw, 13px);
+  font-weight: 800;
+  color: var(--purple);
+  box-shadow: 0 4px 15px rgba(23, 58, 111, 0.08);
+  margin-bottom: 18px;
+  max-width: 100%;
+  flex-wrap: wrap;
+}
+
+.tt-badge-tag {
+  background: var(--orange);
+  color: #fff;
+  padding: 3px 10px;
+  border-radius: 12px;
+  font-size: 11px;
+  font-weight: 900;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+.tt-title {
+  font-family: "Baloo 2", cursive;
+  font-size: clamp(28px, 4.6vw, 52px);
+  color: var(--ink);
+  line-height: 1.16;
+  margin: 0 0 16px;
+  font-weight: 800;
+}
+
+.tt-title span.highlight {
+  color: var(--orange);
+  position: relative;
+  display: inline-block;
+}
+
+.tt-subtitle {
+  font-size: clamp(15px, 2vw, 18px);
+  color: #42628b;
+  font-weight: 700;
+  line-height: 1.6;
+  margin: 0 auto 25px;
+  max-width: 760px;
+}
+
+.tt-quick-actions {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.tt-btn-primary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  background: var(--orange);
+  color: #fff;
+  font-weight: 900;
+  font-size: 15px;
+  padding: 13px 24px;
+  border-radius: 30px;
+  box-shadow: 0 5px 0 #ce4a19;
+  transition: all 0.25s ease;
+  border: none;
+  cursor: pointer;
+  text-decoration: none;
+}
+.tt-btn-primary:hover {
+  background: #e65c15;
+  transform: translateY(-2px);
+  box-shadow: 0 7px 0 #ce4a19;
+  color: #fff;
+}
+
+.tt-btn-whatsapp {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  background: #25d366;
+  color: #fff;
+  font-weight: 900;
+  font-size: 15px;
+  padding: 13px 24px;
+  border-radius: 30px;
+  box-shadow: 0 5px 0 #1b9c4b;
+  transition: all 0.25s ease;
+  border: none;
+  cursor: pointer;
+  text-decoration: none;
+}
+.tt-btn-whatsapp:hover {
+  background: #20bd5a;
+  transform: translateY(-2px);
+  box-shadow: 0 7px 0 #1b9c4b;
+  color: #fff;
+}
+
+.tt-btn-ghost {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  background: #fff;
+  color: var(--ink);
+  font-weight: 900;
+  font-size: 15px;
+  padding: 13px 22px;
+  border-radius: 30px;
+  border: 1.5px solid #d2e4f3;
+  box-shadow: 0 5px 0 #cadceb;
+  transition: all 0.25s ease;
+  cursor: pointer;
+  text-decoration: none;
+}
+.tt-btn-ghost:hover {
+  background: #f0f7ff;
+  border-color: var(--ink);
+  transform: translateY(-2px);
+}
+
+/* ==========================================================================
+   Stats Counter Grid
+   ========================================================================== */
+.tt-stats-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 18px;
+  margin: clamp(30px, 4vw, 45px) 0;
+}
+.tt-stat-card {
+  background: #fff;
+  border: 1px solid #e7eff8;
+  border-radius: 20px;
+  padding: clamp(16px, 2.5vw, 22px) clamp(12px, 2vw, 18px);
+  text-align: center;
+  box-shadow: 0 8px 24px rgba(23, 58, 111, 0.05);
+  position: relative;
+  overflow: hidden;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.tt-stat-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 14px 32px rgba(23, 58, 111, 0.1);
+}
+.tt-stat-card::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+}
+.tt-stat-card:nth-child(1)::before { background: var(--orange); }
+.tt-stat-card:nth-child(2)::before { background: var(--purple); }
+.tt-stat-card:nth-child(3)::before { background: var(--green); }
+.tt-stat-card:nth-child(4)::before { background: #327ed3; }
+
+.tt-stat-number {
+  font-family: "Baloo 2", cursive;
+  font-size: clamp(26px, 4vw, 38px);
+  font-weight: 800;
+  color: var(--ink);
+  line-height: 1.1;
+  margin-bottom: 6px;
+}
+.tt-stat-label {
+  font-size: clamp(11.5px, 1.8vw, 13.5px);
+  font-weight: 800;
+  color: #607a9e;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+/* ==========================================================================
+   Main Feature Box: Theater Video Player & Sales Pitch (Balanced Layout)
+   ========================================================================== */
+.tt-feature-box {
+  display: grid;
+  grid-template-columns: 1.18fr 0.82fr;
+  gap: 32px;
+  align-items: stretch;
+  background: #fff;
+  border-radius: 28px;
+  padding: clamp(20px, 3.2vw, 36px);
+  box-shadow: 0 16px 45px rgba(23, 58, 111, 0.08);
+  border: 1px solid #e3eef8;
+  margin-bottom: clamp(28px, 4vw, 45px);
+}
+
+/* Left Video Column */
+.tt-video-showcase-col {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  width: 100%;
+}
+
+.tt-card-video-header {
+  margin-bottom: 12px;
+}
+
+/* Video Playlist Tabs */
+.tt-video-tabs-bar {
+  display: flex;
+  gap: 6px;
+  margin-bottom: 12px;
+  background: #eef5fc;
+  padding: 5px;
+  border-radius: 14px;
+  border: 1px solid #ddecfa;
+  width: 100%;
+  box-sizing: border-box;
+}
+.tt-video-tab-btn {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  padding: 9px 12px;
+  border-radius: 10px;
+  border: none;
+  background: transparent;
+  color: #42628b;
+  font-family: Nunito, sans-serif;
+  font-size: 13px;
+  font-weight: 800;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  white-space: nowrap;
+}
+.tt-video-tab-btn:hover {
+  color: var(--ink);
+  background: rgba(255, 255, 255, 0.7);
+}
+.tt-video-tab-btn.active {
+  background: #fff;
+  color: var(--orange);
+  box-shadow: 0 4px 12px rgba(23, 58, 111, 0.08);
+}
+
+/* Video Wrapper */
+.tt-video-wrapper {
+  position: relative;
+  background: #0f1c34;
+  border-radius: 18px;
+  overflow: hidden;
+  box-shadow: 0 14px 35px rgba(15, 28, 52, 0.25);
+  border: 3px solid #fff;
+  width: 100%;
+  box-sizing: border-box;
+}
+.tt-video-badge {
+  position: absolute;
+  top: 14px;
+  left: 14px;
+  z-index: 2;
+  background: rgba(20, 53, 111, 0.88);
+  backdrop-filter: blur(6px);
+  color: #fff;
+  padding: 5px 12px;
+  border-radius: 20px;
+  font-size: 11px;
+  font-weight: 800;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  border: 1px solid rgba(255, 255, 255, 0.25);
+}
+.tt-video-badge span.pulse-dot {
+  width: 8px;
+  height: 8px;
+  background: #ff4757;
+  border-radius: 50%;
+  box-shadow: 0 0 8px #ff4757;
+  animation: pulse 1.8s infinite;
+}
+@keyframes pulse {
+  0% { opacity: 0.4; transform: scale(0.9); }
+  50% { opacity: 1; transform: scale(1.2); }
+  100% { opacity: 0.4; transform: scale(0.9); }
+}
+
+.tt-video-player {
+  width: 100%;
+  display: block;
+  aspect-ratio: 16/9;
+  object-fit: contain;
+  background: #000;
+  outline: none;
+}
+.tt-video-caption {
+  background: #14356f;
+  color: #e3effd;
+  padding: 12px 18px;
+  font-size: 13px;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+}
+.tt-video-caption strong {
+  color: var(--yellow);
+}
+
+/* Right Sales Pitch Column */
+.tt-pitch-col {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  gap: 12px;
+}
+.tt-pitch-tag {
+  color: var(--orange);
+  font-weight: 900;
+  font-size: 12px;
+  letter-spacing: 0.8px;
+  text-transform: uppercase;
+}
+.tt-pitch-heading {
+  font-family: "Baloo 2", cursive;
+  font-size: clamp(22px, 2.7vw, 28px);
+  color: var(--ink);
+  line-height: 1.22;
+  margin: 3px 0 0;
+}
+.tt-pitch-desc {
+  font-size: 14px;
+  color: #557297;
+  font-weight: 600;
+  line-height: 1.5;
+  margin: 0;
+}
+
+.tt-pitch-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-top: 4px;
+}
+.tt-pitch-item {
+  display: flex;
+  gap: 12px;
+  align-items: flex-start;
+  background: #f7faff;
+  padding: 10px 14px;
+  border-radius: 14px;
+  border: 1px solid #e7f0fa;
+  transition: transform 0.2s ease;
+}
+.tt-pitch-item:hover {
+  transform: translateX(4px);
+  background: #f0f6ff;
+}
+.tt-pitch-icon-box {
+  width: 34px;
+  height: 34px;
+  border-radius: 10px;
+  display: grid;
+  place-items: center;
+  flex-shrink: 0;
+  color: #fff;
+  font-size: 15px;
+}
+.tt-pitch-text h4 {
+  margin: 0 0 2px;
+  font-size: 14.5px;
+  font-weight: 800;
+  color: var(--ink);
+}
+.tt-pitch-text p {
+  margin: 0;
+  font-size: 12.5px;
+  color: #607a9e;
+  font-weight: 600;
+  line-height: 1.35;
+}
+
+/* ==========================================================================
+   360 Curriculum Ecosystem: 5 Factors + LSRW Method
+   ========================================================================== */
+.tt-curriculum-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 28px;
+  margin-bottom: clamp(35px, 5vw, 55px);
+}
+
+.tt-box-card {
+  background: #fff;
+  border-radius: 24px;
+  padding: clamp(22px, 3.5vw, 35px) clamp(18px, 3vw, 30px);
+  border: 1px solid #e7eff8;
+  box-shadow: 0 10px 30px rgba(23, 58, 111, 0.05);
+}
+.tt-box-header {
+  margin-bottom: 20px;
+}
+.tt-box-title {
+  font-family: "Baloo 2", cursive;
+  font-size: clamp(21px, 2.8vw, 24px);
+  color: var(--ink);
+  margin: 0 0 6px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.tt-box-sub {
+  font-size: 14px;
+  color: #607a9e;
+  font-weight: 600;
+  margin: 0;
+  line-height: 1.5;
+}
+
+/* 5 Factors list */
+.tt-factors-list {
+  display: grid;
+  gap: 11px;
+}
+.tt-factor-item {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 12px 15px;
+  border-radius: 14px;
+  background: #f9fbfd;
+  border: 1px solid #edf3f9;
+}
+.tt-factor-num {
+  font-family: "Baloo 2", cursive;
+  font-weight: 800;
+  font-size: 16px;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  background: var(--purple);
+  color: #fff;
+  flex-shrink: 0;
+}
+.tt-factor-title {
+  font-weight: 800;
+  font-size: 14.5px;
+  color: var(--ink);
+}
+.tt-factor-desc {
+  font-size: 12.5px;
+  color: #607a9e;
+  font-weight: 600;
+}
+
+/* LSRW 4 steps */
+.tt-lsrw-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 12px;
+}
+.tt-lsrw-card {
+  background: #fbfcfe;
+  border: 1px solid #e7eff8;
+  border-radius: 16px;
+  padding: 14px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  transition: transform 0.2s ease;
+}
+.tt-lsrw-card:hover {
+  transform: translateY(-2px);
+  border-color: #c9e1f5;
+  background: #f4faff;
+}
+.tt-lsrw-num {
+  width: 32px;
+  height: 32px;
+  border-radius: 10px;
+  display: grid;
+  place-items: center;
+  font-weight: 900;
+  font-size: 14px;
+  color: #fff;
+  flex-shrink: 0;
+}
+.tt-lsrw-name {
+  font-weight: 800;
+  font-size: 14.5px;
+  color: var(--ink);
+  margin: 0 0 2px;
+}
+.tt-lsrw-sub {
+  font-size: 12px;
+  color: #607a9e;
+  font-weight: 600;
+  margin: 0;
+  line-height: 1.35;
+}
+
+/* ==========================================================================
+   3-Book Mastery System Series Banner
+   ========================================================================== */
+.tt-series-banner {
+  background: linear-gradient(135deg, #14356f 0%, #294e92 100%);
+  border-radius: 24px;
+  padding: clamp(26px, 4.5vw, 40px) clamp(18px, 3.5vw, 35px);
+  color: #fff;
+  margin-bottom: clamp(35px, 5vw, 55px);
+  box-shadow: 0 16px 40px rgba(20, 53, 111, 0.2);
+  position: relative;
+  overflow: hidden;
+}
+.tt-series-banner::after {
+  content: "★ ✦ ★";
+  position: absolute;
+  right: 25px;
+  bottom: -15px;
+  font-size: 80px;
+  color: rgba(255, 255, 255, 0.05);
+  pointer-events: none;
+}
+.tt-series-header {
+  text-align: center;
+  max-width: 680px;
+  margin: 0 auto 28px;
+}
+.tt-series-header h3 {
+  font-family: "Baloo 2", cursive;
+  font-size: clamp(24px, 3.8vw, 32px);
+  margin: 8px 0;
+  color: #fff;
+}
+.tt-series-header p {
+  font-size: clamp(13.5px, 1.8vw, 15px);
+  color: #d1e2fc;
+  margin: 0;
+  font-weight: 600;
+  line-height: 1.5;
+}
+
+.tt-books-flow {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 18px;
+}
+.tt-book-step {
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  border-radius: 18px;
+  padding: 22px 18px;
+  text-align: center;
+  transition: transform 0.25s ease, background 0.25s ease;
+}
+.tt-book-step:hover {
+  transform: translateY(-5px);
+  background: rgba(255, 255, 255, 0.16);
+}
+.tt-book-tag {
+  display: inline-block;
+  background: var(--yellow);
+  color: var(--ink);
+  font-size: 11px;
+  font-weight: 900;
+  padding: 3px 12px;
+  border-radius: 20px;
+  margin-bottom: 10px;
+  text-transform: uppercase;
+}
+.tt-book-step h4 {
+  font-family: "Baloo 2", cursive;
+  font-size: clamp(19px, 2.5vw, 22px);
+  color: #fff;
+  margin: 0 0 8px;
+}
+.tt-book-step p {
+  font-size: 13px;
+  color: #e2eeff;
+  line-height: 1.5;
+  margin: 0;
+  font-weight: 600;
+}
+.tt-book-sample-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  margin-top: 14px;
+  padding: 8px 18px;
+  background: var(--yellow);
+  color: var(--ink);
+  font-family: Nunito, sans-serif;
+  font-size: 13px;
+  font-weight: 800;
+  border-radius: 20px;
+  text-decoration: none;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  transition: all 0.2s ease;
+}
+.tt-book-sample-btn:hover {
+  background: #fff;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.25);
+  color: var(--orange);
+}
+
+/* Kits Badge Pill Bar */
+.tt-kits-bar {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  margin-top: 28px;
+  flex-wrap: wrap;
+}
+.tt-kit-pill {
+  background: rgba(255, 255, 255, 0.15);
+  border: 1px dashed rgba(255, 255, 255, 0.4);
+  padding: 8px 18px;
+  border-radius: 24px;
+  font-size: 13px;
+  font-weight: 800;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+
+/* ==========================================================================
+   Core Pedagogical Beliefs
+   ========================================================================== */
+.tt-beliefs-section {
+  background: #fff;
+  border-radius: 24px;
+  padding: clamp(24px, 4vw, 40px) clamp(18px, 3.5vw, 35px);
+  border: 1px solid #e7eff8;
+  box-shadow: 0 10px 30px rgba(23, 58, 111, 0.05);
+  margin-bottom: clamp(35px, 5vw, 55px);
+}
+.tt-beliefs-header {
+  text-align: center;
+  margin-bottom: 26px;
+}
+.tt-beliefs-header h3 {
+  font-family: "Baloo 2", cursive;
+  font-size: clamp(23px, 3.2vw, 28px);
+  color: var(--ink);
+  margin: 0 0 6px;
+}
+.tt-beliefs-header p {
+  font-size: 14.5px;
+  color: #607a9e;
+  font-weight: 600;
+  margin: 0;
+}
+
+.tt-beliefs-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+}
+.tt-belief-card {
+  background: #f8fbff;
+  border: 1px solid #e5f0fa;
+  border-radius: 16px;
+  padding: 16px 18px;
+  display: flex;
+  gap: 12px;
+  align-items: flex-start;
+}
+.tt-belief-card i {
+  color: var(--green);
+  font-size: 18px;
+  font-style: normal;
+  line-height: 1.2;
+}
+.tt-belief-card p {
+  margin: 0;
+  font-size: 13.5px;
+  color: #38567e;
+  font-weight: 700;
+  line-height: 1.48;
+}
+
+/* ==========================================================================
+   Partnership Models (Learning Partner / Franchise)
+   ========================================================================== */
+.tt-partnership-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+  margin-bottom: clamp(35px, 5vw, 60px);
+}
+.tt-partner-card {
+  border-radius: 22px;
+  padding: clamp(24px, 3.8vw, 35px) clamp(18px, 3vw, 30px);
+  box-shadow: 0 12px 30px rgba(23, 58, 111, 0.06);
+  position: relative;
+  overflow: hidden;
+  border: 2px solid transparent;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+  display: flex;
+  flex-direction: column;
+}
+.tt-partner-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 18px 40px rgba(23, 58, 111, 0.12);
+}
+.tt-partner-card.learning {
+  background: linear-gradient(135deg, #f4fbf5 0%, #ffffff 100%);
+  border-color: #cdecd3;
+}
+.tt-partner-card.franchise {
+  background: linear-gradient(135deg, #fbf7ff 0%, #ffffff 100%);
+  border-color: #ebdcf8;
+}
+.tt-partner-badge {
+  display: inline-flex;
+  align-items: center;
+  align-self: flex-start;
+  gap: 6px;
+  font-size: 11.5px;
+  font-weight: 900;
+  padding: 4px 14px;
+  border-radius: 20px;
+  text-transform: uppercase;
+  margin-bottom: 12px;
+}
+.tt-partner-card.learning .tt-partner-badge {
+  background: #e5f7e3;
+  color: var(--green);
+}
+.tt-partner-card.franchise .tt-partner-badge {
+  background: #f4ebff;
+  color: var(--purple);
+}
+.tt-partner-card h3 {
+  font-family: "Baloo 2", cursive;
+  font-size: clamp(22px, 3vw, 26px);
+  color: var(--ink);
+  margin: 0 0 10px;
+}
+.tt-partner-card p {
+  font-size: 14px;
+  color: #557297;
+  font-weight: 600;
+  line-height: 1.5;
+  margin: 0 0 18px;
+}
+.tt-partner-checklist {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  flex: 1;
+}
+.tt-partner-checklist li {
+  font-size: 13.5px;
+  font-weight: 700;
+  color: #38567e;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.tt-partner-checklist li span.check {
+  color: var(--green);
+  font-weight: 900;
+  font-size: 15px;
+}
+
+/* ==========================================================================
+   Clean Mobile-Responsive Call to Action Card (Replacing Bulky Form/Directory)
+   ========================================================================== */
+.tt-cta-card {
+  background: linear-gradient(135deg, #0e2b5c 0%, #173d7a 100%);
+  border-radius: 28px;
+  padding: clamp(28px, 5vw, 50px) clamp(20px, 4vw, 40px);
+  text-align: center;
+  color: #fff;
+  margin-bottom: 40px;
+  box-shadow: 0 16px 40px rgba(14, 43, 92, 0.16);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  position: relative;
+  overflow: hidden;
+}
+.tt-cta-card::before {
+  content: "";
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: radial-gradient(circle at center, rgba(255, 109, 37, 0.15) 0%, transparent 60%);
+  pointer-events: none;
+}
+.tt-cta-badge {
+  display: inline-block;
+  background: rgba(255, 255, 255, 0.14);
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  color: #ffc247;
+  font-weight: 800;
+  font-size: clamp(11px, 1.8vw, 13px);
+  padding: 6px 16px;
+  border-radius: 20px;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  margin-bottom: 14px;
+}
+.tt-cta-card h3 {
+  font-family: "Baloo 2", cursive;
+  font-size: clamp(24px, 4.2vw, 36px);
+  color: #fff;
+  margin: 0 0 12px;
+  line-height: 1.25;
+}
+.tt-cta-card p {
+  font-size: clamp(14px, 2vw, 16.5px);
+  color: #d1e2fc;
+  font-weight: 600;
+  max-width: 720px;
+  margin: 0 auto 28px;
+  line-height: 1.6;
+}
+.tt-cta-actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
+  position: relative;
+  z-index: 2;
+}
+.tt-cta-actions .tt-btn-primary,
+.tt-cta-actions .tt-btn-whatsapp,
+.tt-cta-actions .tt-btn-ghost {
+  min-height: 48px;
+  font-size: 14.5px;
+}
+.tt-cta-actions .tt-btn-ghost {
+  background: rgba(255, 255, 255, 0.1);
+  color: #fff;
+  border-color: rgba(255, 255, 255, 0.25);
+}
+.tt-cta-actions .tt-btn-ghost:hover {
+  background: #fff;
+  color: var(--ink);
+}
+
+/* ==========================================================================
+   Lightbox Modal for Full Brochure Inspection (100% Mobile & Desktop Responsive)
+   ========================================================================== */
+.tt-modal-backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(14, 30, 56, 0.92);
+  backdrop-filter: blur(8px);
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: clamp(8px, 2.5vw, 20px);
+  animation: fadeIn 0.2s ease;
+  box-sizing: border-box;
+}
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+.tt-modal-container {
+  background: #fff;
+  border-radius: 20px;
+  max-width: 950px;
+  width: 100%;
+  height: 94vh;
+  max-height: 94vh;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  box-shadow: 0 25px 60px rgba(0, 0, 0, 0.45);
+}
+.tt-modal-header {
+  padding: 12px 18px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid #e7eff8;
+  background: #fbfcfe;
+  flex-shrink: 0;
+}
+.tt-modal-title {
+  margin: 0;
+  font-family: "Baloo 2", cursive;
+  font-size: clamp(15px, 2vw, 19px);
+  color: var(--ink);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  line-height: 1.25;
+}
+.tt-modal-close {
+  background: #f0f4f8;
+  border: none;
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  color: var(--ink);
+  cursor: pointer;
+  transition: all 0.2s ease;
+  flex-shrink: 0;
+}
+.tt-modal-close:hover {
+  background: #ffeaeb;
+  color: var(--pink);
+}
+
+/* Modal Toolbar & Page Tabs */
+.tt-modal-toolbar {
+  background: #f3f7fb;
+  border-bottom: 1px solid #e2edf7;
+  padding: 8px 16px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  flex-shrink: 0;
+}
+.tt-modal-tabs {
+  display: flex;
+  gap: 5px;
+  background: #e5effa;
+  padding: 3px 4px;
+  border-radius: 10px;
+  overflow-x: auto;
+  max-width: 100%;
+  scrollbar-width: none;
+  -webkit-overflow-scrolling: touch;
+}
+.tt-modal-tabs::-webkit-scrollbar {
+  display: none;
+}
+.tt-modal-tab-btn {
+  padding: 5px 12px;
+  border: none;
+  background: transparent;
+  border-radius: 7px;
+  font-family: Nunito, sans-serif;
+  font-size: 12px;
+  font-weight: 800;
+  color: #42628b;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+.tt-modal-tab-btn:hover {
+  color: var(--ink);
+  background: rgba(255, 255, 255, 0.6);
+}
+.tt-modal-tab-btn.active {
+  background: #fff;
+  color: var(--orange);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+}
+.tt-modal-toolbar-badge {
+  font-size: 11.5px;
+  font-weight: 800;
+  color: var(--orange);
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+/* Modal Body */
+.tt-modal-body {
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+  padding: 16px;
+  text-align: center;
+  background: #0f1c34;
+  flex: 1 1 auto;
+  min-height: 0; /* Ensures inner flex child shrinks properly and scrolls */
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  align-items: center;
+}
+.tt-modal-page-wrap {
+  width: 100%;
+  max-width: 780px;
+  margin: 0 auto;
+}
+.tt-modal-body img {
+  max-width: 100%;
+  width: 100%;
+  height: auto;
+  border-radius: 10px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.35);
+  background: #fff;
+  display: block;
+}
+.tt-page-watermark {
+  background: rgba(255, 255, 255, 0.16);
+  color: #fff;
+  font-size: 11.5px;
+  font-weight: 800;
+  padding: 3px 12px;
+  border-radius: 12px;
+  display: inline-block;
+  margin-bottom: 6px;
+}
+
+/* Modal Footer */
+.tt-modal-footer {
+  padding: 10px 18px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-top: 1px solid #e7eff8;
+  background: #fbfcfe;
+  gap: 12px;
+  flex-shrink: 0;
+}
+.tt-modal-footer-desc {
+  font-size: 12.5px;
+  color: #607a9e;
+  font-weight: 600;
+}
+.tt-modal-footer-actions {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  flex-wrap: wrap;
+}
+.tt-modal-footer-actions .tt-btn-primary,
+.tt-modal-footer-actions .tt-btn-ghost {
+  padding: 8px 14px;
+  font-size: 13px;
+  min-height: 38px;
+}
+
+/* ==========================================================================
+   Responsive Breakpoints: Tablets, Phones, & Ultra-small devices
+   ========================================================================== */
+
+/* Laptop / iPad Landscape adjustments */
+@media (max-width: 1100px) and (min-width: 769px) {
+  .tt-video-cards-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* Medium Tablets & Large Phones */
+@media (max-width: 992px) {
+  .tt-feature-box {
+    grid-template-columns: 1fr;
+    gap: 28px;
+    padding: 24px;
+  }
+  .tt-video-cards-grid {
+    grid-template-columns: 1fr;
+  }
+  .tt-curriculum-grid {
+    grid-template-columns: 1fr;
+    gap: 24px;
+  }
+  .tt-books-flow {
+    grid-template-columns: 1fr;
+  }
+  .tt-partnership-grid {
+    grid-template-columns: 1fr;
+  }
+  .tt-stats-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .tt-beliefs-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* Small Tablets & Mobile Devices (<= 680px) */
+@media (max-width: 680px) {
+  .tt-video-tabs-bar {
+    flex-direction: column;
+    gap: 6px;
+    padding: 6px;
+  }
+  .tt-video-tab-btn {
+    width: 100%;
+    justify-content: flex-start;
+    padding: 10px 14px;
+    font-size: 13.5px;
+    border-radius: 8px;
+  }
+  .tt-video-caption {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 6px;
+    padding: 10px 14px;
+  }
+  .tt-quick-actions,
+  .tt-cta-actions {
+    flex-direction: column;
+    align-items: stretch;
+    width: 100%;
+  }
+  .tt-btn-primary, 
+  .tt-btn-whatsapp, 
+  .tt-btn-ghost {
+    width: 100%;
+    box-sizing: border-box;
+    justify-content: center;
+  }
+  .tt-cta-card {
+    padding: 24px 16px;
+    border-radius: 20px;
+  }
+  .tt-stats-grid {
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+  }
+  .tt-stat-card {
+    padding: 14px 10px;
+  }
+  .tt-lsrw-grid {
+    grid-template-columns: 1fr;
+  }
+  .tt-beliefs-grid {
+    grid-template-columns: 1fr;
+  }
+  .tt-kits-bar {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  .tt-kit-pill {
+    width: 100%;
+    box-sizing: border-box;
+  }
+  /* MODAL MOBILE OPTIMIZATION: Maximize PDF visibility */
+  .tt-modal-backdrop {
+    padding: 0 !important;
+  }
+  .tt-modal-container {
+    width: 100% !important;
+    height: 100vh !important;
+    height: 100dvh !important;
+    max-height: 100vh !important;
+    max-height: 100dvh !important;
+    border-radius: 0 !important;
+  }
+  .tt-modal-header {
+    padding: 8px 12px !important;
+  }
+  .tt-modal-title {
+    font-size: 14px !important;
+  }
+  .tt-modal-close {
+    width: 32px !important;
+    height: 32px !important;
+  }
+  .tt-modal-toolbar {
+    padding: 6px 8px !important;
+  }
+  .tt-modal-toolbar-badge {
+    display: none !important;
+  }
+  .tt-modal-tabs {
+    width: 100% !important;
+  }
+  .tt-modal-body {
+    padding: 8px 6px !important;
+    gap: 12px !important;
+  }
+  .tt-modal-body img {
+    border-radius: 6px !important;
+  }
+  .tt-modal-footer {
+    padding: 8px 10px !important;
+    flex-direction: row !important;
+  }
+  .tt-modal-footer-desc {
+    display: none !important;
+  }
+  .tt-modal-footer-actions {
+    width: 100% !important;
+    display: flex !important;
+    flex-direction: row !important;
+    gap: 6px !important;
+    flex-wrap: nowrap !important;
+  }
+  .tt-modal-footer-actions .tt-download-pdf-btn {
+    flex: 1.5 !important;
+    padding: 8px 8px !important;
+    font-size: 12px !important;
+    justify-content: center !important;
+    min-height: 38px !important;
+  }
+  .tt-modal-footer-actions .tt-open-pdf-btn {
+    flex: 1.2 !important;
+    padding: 8px 8px !important;
+    font-size: 12px !important;
+    justify-content: center !important;
+    min-height: 38px !important;
+  }
+  .tt-modal-footer-actions .tt-close-modal-btn {
+    flex: 0.9 !important;
+    padding: 8px 8px !important;
+    font-size: 12px !important;
+    justify-content: center !important;
+    min-height: 38px !important;
+  }
+}
+
+/* Extra Small Phones (<= 420px) */
+@media (max-width: 420px) {
+  .tt-stat-number {
+    font-size: 24px;
+  }
+  .tt-stat-label {
+    font-size: 11px;
+  }
+  .tt-feature-box,
+  .tt-box-card,
+  .tt-cta-card {
+    padding: 18px 12px;
+    border-radius: 16px;
+  }
+}

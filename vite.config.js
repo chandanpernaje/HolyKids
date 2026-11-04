@@ -1,6 +1,27 @@
 import react from '@vitejs/plugin-react';
 import { defineConfig } from 'vite';
+import fs from 'fs';
+import path from 'path';
 import handler from './api/send-email.js';
+
+function copyIndexTo404Plugin() {
+  return {
+    name: 'copy-index-to-404',
+    closeBundle() {
+      try {
+        const distDir = path.resolve(process.cwd(), 'dist');
+        const indexPath = path.join(distDir, 'index.html');
+        const notFoundPath = path.join(distDir, '404.html');
+        if (fs.existsSync(indexPath)) {
+          fs.copyFileSync(indexPath, notFoundPath);
+          console.log('✓ Successfully created dist/404.html from index.html');
+        }
+      } catch (e) {
+        console.warn('Could not copy index.html to 404.html:', e);
+      }
+    }
+  };
+}
 
 function apiDevPlugin() {
   return {
@@ -59,5 +80,5 @@ function apiDevPlugin() {
 
 // https://vite.dev/config/
 export default defineConfig({
-  plugins: [react(), apiDevPlugin()]
+  plugins: [react(), apiDevPlugin(), copyIndexTo404Plugin()]
 });

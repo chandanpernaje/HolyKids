@@ -1,39 +1,96 @@
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useNavigate, useLocation } from 'react-router-dom';
 import { useState } from 'react';
-
 
 export default function Header() {
   const navigate = useNavigate();
+  const location = useLocation();
   const [searchTerm, setSearchTerm] = useState('');
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
+  const handleSearchSubmit = (e) => {
+    e.preventDefault();
+    if (searchTerm.trim()) {
+      navigate(`/search?q=${encodeURIComponent(searchTerm.trim())}`);
+      setIsMenuOpen(false);
+    }
+  };
+
+  const navItems = [
+    { to: '/', label: 'Home' },
+    { to: '/play-group', label: 'Play Group' },
+    { to: '/beginner', label: 'Beginner' },
+    { to: '/junior', label: 'Junior' },
+    { to: '/senior', label: 'Senior' },
+    { to: '/learn-and-play', label: 'Learn & Play' },
+    { to: '/about', label: 'About Us' },
+    { to: '/contact', label: 'Contact Us' }
+  ];
+
   return (
     <>
-      <div className="notice">🌈 A joyful start to learning!</div>
+      <div className="notice">🌈 Aavishkara Global Education</div>
       <header>
-        <div className="wrap top">
-          <Link to="/" aria-label="HolyKids home" style={{ display: 'flex' }}>
-            <img className="logo" src="/holykids-logo.png" alt="HolyKids" />
+        <div className="wrap header-brand-row">
+          <Link to="/" aria-label="Aavishkara Global Education home" className="brand-lockup">
+            <img className="logo aavishkara-logo" src="/aavishkara-logo.png" alt="Aavishkara Global Education" />
+            <span className="brand-tagline">A joyful start to learning</span>
           </Link>
 
-          <button className="mobile-menu-btn" onClick={() => setIsMenuOpen(!isMenuOpen)}>
-            {isMenuOpen ? '✕' : '☰'}
-          </button>
+          <div className="header-right-group">
+            <form className="search" onSubmit={handleSearchSubmit}>
+              <input
+                aria-label="Search"
+                placeholder="Search..."
+                value={searchTerm}
+                onChange={(e) => setSearchTerm(e.target.value)}
+              />
+              <button type="submit" aria-label="Search">⌕</button>
+            </form>
 
-          <div className={`links ${isMenuOpen ? 'open' : ''}`}>
-            <Link to="/" onClick={() => setIsMenuOpen(false)}>Home</Link>
-            <Link to="/beginner" onClick={() => setIsMenuOpen(false)}>Beginner</Link>
-            <Link to="/junior" onClick={() => setIsMenuOpen(false)}>Junior</Link>
-            <Link to="/senior" onClick={() => setIsMenuOpen(false)}>Senior</Link>
-            <Link to="/what-we-do" onClick={() => setIsMenuOpen(false)}>What We Do</Link>
-            <Link to="/learn-and-play" onClick={() => setIsMenuOpen(false)}>Learn & Play</Link>
-            <Link to="/about" onClick={() => setIsMenuOpen(false)}>About Us</Link>
+            <Link to="/" aria-label="HolyKids home" className="brand-lockup brand-lockup-right">
+              <img className="logo holykids-logo" src="/holykids-logo.png" alt="HolyKids" />
+              <span className="brand-tagline">Gift your children - secure future with quality education.</span>
+            </Link>
+
+            <button
+              type="button"
+              className="mobile-menu-btn"
+              onClick={() => setIsMenuOpen(!isMenuOpen)}
+              aria-label="Toggle navigation menu"
+            >
+              {isMenuOpen ? '✕' : '☰'}
+            </button>
           </div>
+        </div>
 
-          <form className="search" onSubmit={(e) => { e.preventDefault(); if (searchTerm.trim()) { navigate(`/search?q=${encodeURIComponent(searchTerm.trim())}`); } }}>
-            <input aria-label="Search" placeholder="Search..." value={searchTerm} onChange={(e) => setSearchTerm(e.target.value)} />
-            <button type="submit" aria-label="Search">⌕</button>
-          </form>
+        <div className="header-nav-strip">
+          <div className="wrap">
+            <nav className={`links ${isMenuOpen ? 'open' : ''}`} aria-label="Primary Navigation">
+              {navItems.map((item) => (
+                <Link
+                  key={item.to}
+                  to={item.to}
+                  className={location.pathname === item.to ? 'active-link' : ''}
+                  onClick={() => setIsMenuOpen(false)}
+                >
+                  {item.label}
+                </Link>
+              ))}
+              <a href="tel:9988046446" className="nav-phone" onClick={() => setIsMenuOpen(false)}>
+                📞 9988046446
+              </a>
+
+              <form className="search mobile-search" onSubmit={handleSearchSubmit}>
+                <input
+                  aria-label="Search books"
+                  placeholder="Search..."
+                  value={searchTerm}
+                  onChange={(e) => setSearchTerm(e.target.value)}
+                />
+                <button type="submit" aria-label="Search">⌕</button>
+              </form>
+            </nav>
+          </div>
         </div>
       </header>
     </>

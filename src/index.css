@@ -3,13 +3,31 @@
 :root{--ink:#14356f;--orange:#ff6d25;--pink:#f83d70;--sky:#dff6ff;--yellow:#ffc825;--green:#74b900;--purple:#7241a8;--paper:#fffdf7}
 *{box-sizing:border-box} body{margin:0;color:#163560;background:var(--paper);font-family:Nunito,Arial,sans-serif} a{text-decoration:none;color:inherit}
 .wrap{width:100%;max-width:1200px;padding:0 40px;margin:0 auto;box-sizing:border-box}.notice{background:#713fa6;color:#fff;text-align:center;font-size:14px;font-weight:800;padding:9px 16px;letter-spacing:.2px}.notice span{color:#ffe33c}
-header{background:#fff;position:sticky;top:0;z-index:1000;box-shadow:0 3px 20px #173a6f12}.top{height:87px;display:flex;align-items:center;justify-content:space-between;gap:30px}.logo{width:112px;height:78px;object-fit:contain;margin-top:5px;flex-shrink:0}.search{max-width:280px;flex-shrink:0;display:flex;border:1.5px solid #d5e4ed;border-radius:30px;padding:4px 5px 4px 17px;background:#f9fcfe}.search input{border:0;outline:0;background:transparent;min-width:0;flex:1;font:600 14px Nunito;color:#24466d}.search button{border:0;border-radius:22px;width:35px;height:35px;background:var(--orange);color:white;font-size:17px;cursor:pointer}
-.links{display:flex;gap:35px;font-size:15px;font-weight:900;flex:1;justify-content:center}.links a:hover{color:var(--pink)}
-@media (min-width: 801px) and (max-width: 1180px) {
-  .top { gap: 14px; }
-  .links { gap: 16px; font-size: 13.5px; }
-  .search { max-width: 180px; }
-  .logo { width: 90px; height: 65px; }
+header{background:#fff;position:sticky;top:0;z-index:1000;box-shadow:0 3px 20px #173a6f12}
+.header-brand-row{display:flex;align-items:center;justify-content:space-between;gap:20px;padding-top:10px;padding-bottom:10px}
+.brand-lockup{display:flex;flex-direction:column;align-items:flex-start;gap:2px;flex-shrink:0}
+.brand-lockup-right{align-items:flex-end;text-align:right}
+.logo{width:112px;height:78px;object-fit:contain;margin-top:0;flex-shrink:0}
+.aavishkara-logo{width:185px;height:56px;object-fit:contain}
+.holykids-logo{width:90px;height:60px;object-fit:contain}
+.brand-tagline{font-size:11.5px;font-weight:800;color:var(--purple);line-height:1.25;max-width:255px}
+.brand-lockup-right .brand-tagline{color:var(--orange);max-width:265px}
+.header-right-group{display:flex;align-items:center;gap:18px;flex-shrink:0}
+.search{max-width:230px;flex-shrink:0;display:flex;border:1.5px solid #d5e4ed;border-radius:30px;padding:4px 5px 4px 17px;background:#f9fcfe}.search input{border:0;outline:0;background:transparent;min-width:0;flex:1;font:600 14px Nunito;color:#24466d}.search button{border:0;border-radius:22px;width:35px;height:35px;background:var(--orange);color:white;font-size:17px;cursor:pointer}
+.mobile-search{display:none}
+.header-nav-strip{border-top:1px solid #edf3f8;background:#fcfdff}
+.links{display:flex;align-items:center;gap:22px;font-size:14.5px;font-weight:900;flex:1;justify-content:center;padding:10px 0;flex-wrap:wrap}
+.links a{white-space:nowrap;transition:color 0.2s}
+.links a:hover,.links a.active-link{color:var(--pink)}
+.nav-phone{display:inline-flex;align-items:center;gap:5px;background:#fff0eb;color:var(--orange);padding:5px 13px;border-radius:20px;border:1px solid #ffd5c5;font-weight:900;font-size:13.5px}
+.nav-phone:hover{background:var(--orange);color:#fff !important}
+@media (min-width: 861px) and (max-width: 1180px) {
+  .header-brand-row { gap: 12px; }
+  .links { gap: 14px; font-size: 13.5px; }
+  .search { max-width: 175px; }
+  .aavishkara-logo { width: 150px; height: 48px; }
+  .holykids-logo { width: 76px; height: 52px; }
+  .brand-tagline { font-size: 10.5px; max-width: 210px; }
 }
 .mobile-menu-btn{display:none;background:none;border:none;font-size:26px;color:var(--ink);cursor:pointer;padding:5px;line-height:1}
 .hero{overflow:hidden;background:linear-gradient(105deg,#a4e1fb 0%,#e9f9ff 49%,#fff7df 100%);position:relative;padding:46px 0 35px}.hero:before,.hero:after{content:"";position:absolute;border-radius:50%;background:#fff8;filter:blur(1px)}.hero:before{width:260px;height:260px;left:-120px;top:20px}.hero:after{width:370px;height:370px;right:-160px;bottom:-160px}.hero-grid{position:relative;z-index:1;display:grid;grid-template-columns:1.05fr .95fr;align-items:center;gap:26px}.eyebrow{display:inline-flex;align-items:center;gap:8px;border-radius:22px;background:white;padding:7px 14px;color:var(--purple);font-size:13px;font-weight:900;box-shadow:0 5px 14px #16356016}.eyebrow i{font-style:normal;color:#ffbb00;font-size:16px}.hero h1,.section-title{font-family:"Baloo 2",cursive;margin:10px 0 0;color:var(--ink);font-weight:800;line-height:1}.hero h1{font-size:clamp(40px,5vw,66px);letter-spacing:-1.8px}.hero h1 em{font-style:normal;color:var(--orange)}.hero p{font-size:18px;line-height:1.55;max-width:510px;margin:16px 0 25px;font-weight:700;color:#42628b}.buttons{display:flex;gap:12px;flex-wrap:wrap}.button{display:inline-flex;align-items:center;gap:9px;border-radius:28px;padding:13px 20px;font-weight:900;font-size:14px;box-shadow:0 5px 0 #ce4a19;border:none;cursor:pointer;transition:all 0.3s ease}.button.primary{color:#fff;background:var(--orange)}.button.primary:hover{background:#e65c15}.button.ghost{color:var(--ink);background:#fff;box-shadow:0 5px 0 #c9dde5}.button.ghost:hover{background:var(--orange);color:#fff;box-shadow:0 5px 0 #ce4a19}.poster-card{padding:11px;background:#fff;border-radius:24px;transform:rotate(1.7deg);box-shadow:0 18px 36px #295a7b40;transition:transform 0.4s cubic-bezier(0.175,0.885,0.32,1.275);cursor:pointer}.poster-card:hover{transform:rotate(0deg) scale(1.05)}.poster-card:active{transform:rotate(1.7deg) scale(0.95);transition:transform 0.1s}.poster-card img{display:block;width:100%;border-radius:17px}.spark{position:absolute;font-size:30px;color:#ffc825;animation:float 3s ease-in-out infinite}.spark.s1{top:50px;left:49%}.spark.s2{right:4%;top:36px;color:#f8736f;animation-delay:1s}@keyframes float{50%{transform:translateY(-9px) rotate(12deg)}}
@@ -18,8 +36,66 @@ header{background:#fff;position:sticky;top:0;z-index:1000;box-shadow:0 3px 20px 
 .why{background:#fff5d9;padding:66px 0}.why-grid{display:grid;grid-template-columns:.9fr 1.1fr;align-items:center;gap:60px}.book-window{position:relative;min-height:315px;background:#fff;border-radius:50% 50% 28px 28px;box-shadow:0 18px 30px #8b642822;overflow:hidden;display:flex;align-items:center;justify-content:center}.book-window img{width:100%;height:100%;object-fit:contain;transition:transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);cursor:pointer}.book-window img:hover{transform:scale(1.05) rotate(2deg)}.book-window img:active{transform:scale(0.95) rotate(-2deg);transition:transform 0.1s}.why-copy .section-label,.why-copy .section-title,.why-copy .section-sub{text-align:left}.why-copy .section-sub{margin-left:0}.benefits{display:grid;grid-template-columns:1fr 1fr;gap:15px}.benefit{display:flex;align-items:center;gap:12px;background:#fff;border-radius:15px;padding:14px;box-shadow:0 5px 12px #5e42100e;font-size:14px;font-weight:900}.bubble{display:grid;place-items:center;flex:0 0 38px;width:38px;height:38px;border-radius:50%;font-size:19px;background:#e8f6ff}.benefit:nth-child(2) .bubble{background:#fff0d7}.benefit:nth-child(3) .bubble{background:#f4ebff}.benefit:nth-child(4) .bubble{background:#e5f7e3}
 .cta{padding:64px 0;background:linear-gradient(105deg,#703ca1,#293f93);color:#fff;overflow:hidden;position:relative}.cta:after{content:"✦  ✦  ✦";position:absolute;right:7%;bottom:-36px;font-size:120px;color:#ffffff19}.cta-inner{position:relative;z-index:1;display:flex;align-items:center;justify-content:space-between;gap:25px}.cta h2{font:800 43px/1.08 "Baloo 2";margin:0}.cta p{font-size:17px;font-weight:700;margin:8px 0 0;color:#e6e8ff}.cta .button{box-shadow:0 5px 0 #a74317;white-space:nowrap}
 footer{background:#122e62;color:#fff;padding:44px 0 19px}.footer-top{display:grid;grid-template-columns:1.3fr repeat(3,1fr);gap:30px}.footer-logo{width:125px;background:#fff;border-radius:12px;padding:3px}.footer-top p{color:#c6d7f3;line-height:1.5;font-size:14px;font-weight:600;max-width:270px}.footer-top h4{margin:8px 0 13px;font-size:15px}.footer-top a{display:block;color:#c6d7f3;font-size:13px;font-weight:600;margin:8px 0}.copyright{border-top:1px solid #ffffff21;margin-top:25px;padding-top:17px;color:#9eb5da;font-size:12px;text-align:center}
-@media(max-width:800px){.wrap{padding:0 16px}.top{height:auto;flex-wrap:wrap;padding:12px 0;justify-content:space-between}.logo{width:86px;height:62px;margin:0}.mobile-menu-btn{display:block}.links{display:none;width:100%;flex-direction:column;align-items:center;gap:15px;font-size:16px;padding:10px 0 20px}.links.open{display:flex}.hero{padding:30px 0}.hero-grid,.why-grid{grid-template-columns:1fr}.poster-card{max-width:570px;margin:auto}.strip-inner{grid-template-columns:1fr 1fr}.strip-item:nth-child(2){border:0}.series{grid-template-columns:1fr}.series-card{min-height:215px}.book-window{max-width:100%;width:100%;margin:auto;min-height:auto;aspect-ratio:4/3;border-radius:28px;display:flex;align-items:center;justify-content:center}.book-window img{width:100%;height:100%;object-fit:contain;position:relative;left:0;top:0}.why-grid{gap:32px}.why-copy .section-label,.why-copy .section-title,.why-copy .section-sub{text-align:center}.why-copy .section-sub{margin-left:auto}.footer-top{grid-template-columns:1fr 1fr}.search{display:none}.cta-inner{display:block}.cta .button{margin-top:22px}.section{padding:48px 0}.section-title{font-size:37px}}
-@media(max-width:420px){.wrap{width:min(100% - 28px,1200px)}.notice{font-size:11px}.actions a:nth-child(1){display:none}.top{justify-content:space-between}.hero h1{font-size:44px}.benefits{grid-template-columns:1fr}.footer-top{grid-template-columns:1fr}.strip-item{font-size:12px;padding:13px 6px}.strip-item span{font-size:16px}.section-title{font-size:33px}}
+@media(max-width:860px){.wrap{padding:0 16px}.header-brand-row{padding:10px 0;gap:10px}.aavishkara-logo{width:130px;height:42px}.holykids-logo{width:62px;height:44px}.brand-tagline{font-size:9.5px;max-width:150px}.brand-lockup-right .brand-tagline{display:none}.header-right-group{gap:10px}.header-right-group .search{display:none}.mobile-menu-btn{display:block}.header-nav-strip{border-top:none}.links{display:none;width:100%;flex-direction:column;align-items:center;gap:14px;font-size:16px;padding:10px 0 20px;border-top:1px solid #edf3f8}.links.open{display:flex}.mobile-search{display:flex;max-width:280px;width:100%;margin-top:4px}.hero{padding:30px 0}.hero-grid,.why-grid{grid-template-columns:1fr}.poster-card{max-width:570px;margin:auto}.strip-inner{grid-template-columns:1fr 1fr}.strip-item:nth-child(2){border:0}.series{grid-template-columns:1fr}.series-card{min-height:215px}.book-window{max-width:100%;width:100%;margin:auto;min-height:auto;aspect-ratio:4/3;border-radius:28px;display:flex;align-items:center;justify-content:center}.book-window img{width:100%;height:100%;object-fit:contain;position:relative;left:0;top:0}.why-grid{gap:32px}.why-copy .section-label,.why-copy .section-title,.why-copy .section-sub{text-align:center}.why-copy .section-sub{margin-left:auto}.footer-top{grid-template-columns:1fr 1fr}.cta-inner{display:block}.cta .button{margin-top:22px}.section{padding:48px 0}.section-title{font-size:37px}}
+@media(max-width:480px){.wrap{width:min(100% - 20px,1200px)}.notice{font-size:11px}.aavishkara-logo{width:112px;height:36px}.holykids-logo{width:52px;height:38px}.brand-tagline{font-size:9px;max-width:130px}.hero h1{font-size:42px}.benefits{grid-template-columns:1fr}.footer-top{grid-template-columns:1fr}.strip-item{font-size:12px;padding:13px 6px}.strip-item span{font-size:16px}.section-title{font-size:32px}}
+
+/* --- Brand Series Selector on Home (#series) --- */
+.series-brands { display: grid; grid-template-columns: repeat(2, 1fr); gap: 26px; max-width: 960px; margin: 0 auto; }
+.brand-choice-card { position: relative; overflow: hidden; background: #fff; border-radius: 24px; padding: 34px 28px; box-shadow: 0 14px 36px #173a6f14; border: 2px solid #e7eff8; text-align: center; cursor: pointer; transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease; display: flex; flex-direction: column; align-items: center; }
+.brand-choice-card:hover { transform: translateY(-5px); box-shadow: 0 20px 45px #173a6f20; border-color: var(--orange); }
+.brand-choice-card.aavishkara:hover { border-color: var(--purple); }
+.brand-choice-logo { height: 84px; max-width: 240px; object-fit: contain; margin-bottom: 16px; }
+.brand-choice-badge { display: inline-block; padding: 5px 14px; border-radius: 20px; font-size: 11.5px; font-weight: 900; letter-spacing: 0.6px; margin-bottom: 12px; background: #fff0eb; color: var(--orange); }
+.brand-choice-card.aavishkara .brand-choice-badge { background: #f4ebff; color: var(--purple); }
+.brand-choice-card h3 { font-family: "Baloo 2", cursive; font-size: 28px; color: var(--ink); margin: 0 0 10px; line-height: 1.15; }
+.brand-choice-card p { font-size: 14.5px; color: #607a9e; font-weight: 600; line-height: 1.5; margin: 0 0 22px; max-width: 380px; }
+.brand-choice-cta { margin-top: auto; display: inline-flex; align-items: center; gap: 8px; background: var(--orange); color: #fff; padding: 11px 22px; border-radius: 24px; font-size: 13.5px; font-weight: 900; box-shadow: 0 4px 0 #ce4a19; }
+.brand-choice-card.aavishkara .brand-choice-cta { background: var(--purple); box-shadow: 0 4px 0 #4d2875; }
+
+.brand-series-panel { background: #fff; border-radius: 24px; padding: 30px; border: 1.5px solid #e7eff8; box-shadow: 0 14px 40px #173a6f0f; }
+.brand-panel-toolbar { display: flex; align-items: center; justify-content: space-between; gap: 16px; flex-wrap: wrap; border-bottom: 2px dashed #e7eff8; padding-bottom: 18px; margin-bottom: 22px; }
+.brand-panel-title-wrap { display: flex; align-items: center; gap: 14px; flex-wrap: wrap; }
+.brand-panel-logo { height: 52px; max-width: 170px; object-fit: contain; }
+.brand-panel-actions { display: flex; gap: 10px; flex-wrap: wrap; align-items: center; }
+.pill-btn { border: 1.5px solid #d5e4ed; background: #f8fbff; color: var(--ink); border-radius: 22px; padding: 8px 16px; font-family: Nunito, sans-serif; font-size: 13px; font-weight: 800; cursor: pointer; transition: all 0.2s; }
+.pill-btn:hover, .pill-btn.active { background: var(--orange); color: #fff; border-color: var(--orange); }
+.pill-btn.purple.active, .pill-btn.purple:hover { background: var(--purple); border-color: var(--purple); color: #fff; }
+.level-filter-tabs { display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 24px; justify-content: center; }
+.home-books-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 18px; }
+.brand-level-group { margin-bottom: 32px; }
+.brand-level-group:last-child { margin-bottom: 0; }
+.brand-level-header { display: flex; align-items: center; justify-content: space-between; gap: 12px; flex-wrap: wrap; margin-bottom: 16px; }
+.brand-level-header h3 { font-family: "Baloo 2", cursive; font-size: 24px; color: var(--ink); margin: 0; display: flex; align-items: center; gap: 10px; }
+.brand-level-pill { font-size: 11px; font-weight: 900; background: var(--sky); color: var(--ink); padding: 4px 10px; border-radius: 12px; }
+@media(max-width: 760px) { .series-brands { grid-template-columns: 1fr; } .brand-series-panel { padding: 18px 14px; } }
+
+/* --- Our Other Facilities Section (#facilities) --- */
+.facilities-section { background: #f4faff; padding: 66px 0; border-top: 1px solid #e6f0fa; border-bottom: 1px solid #e6f0fa; }
+.facilities-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 22px; }
+.facility-card { background: #fff; border-radius: 22px; padding: 28px 22px; text-align: center; border: 1.5px solid #e5eff8; box-shadow: 0 10px 26px #173a6f0d; display: flex; flex-direction: column; align-items: center; transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease; }
+.facility-card:hover { transform: translateY(-5px); box-shadow: 0 18px 36px #173a6f18; border-color: var(--orange); }
+.facility-icon { width: 68px; height: 68px; border-radius: 20px; display: grid; place-items: center; font-size: 32px; margin-bottom: 16px; background: #fff3e6; }
+.facility-card:nth-child(2) .facility-icon { background: #e8f6ff; }
+.facility-card:nth-child(3) .facility-icon { background: #e5f7e3; }
+.facility-card:nth-child(4) .facility-icon { background: #f4ebff; }
+.facility-card h3 { font-family: "Baloo 2", cursive; font-size: 23px; color: var(--ink); margin: 0 0 8px; }
+.facility-card p { font-size: 13.5px; color: #607a9e; font-weight: 600; line-height: 1.5; margin: 0 0 18px; }
+.facility-link { margin-top: auto; font-size: 13px; font-weight: 900; color: var(--orange); display: inline-flex; align-items: center; gap: 5px; }
+.facility-link:hover { color: var(--pink); }
+@media(max-width: 960px) { .facilities-grid { grid-template-columns: repeat(2, 1fr); } }
+@media(max-width: 520px) { .facilities-grid { grid-template-columns: 1fr; } }
+
+/* --- Dual Series Tabs & Brand Blocks on SeriesPage --- */
+.dual-series-tabs { display: flex; justify-content: center; gap: 12px; flex-wrap: wrap; margin: 22px auto 0; }
+.brand-section-block { background: #fff; border-radius: 24px; padding: 30px; margin-bottom: 36px; border: 1.5px solid #e7eff8; box-shadow: 0 10px 32px #173a6f0a; }
+.brand-section-block:last-child { margin-bottom: 0; }
+.brand-section-header { display: flex; align-items: center; justify-content: space-between; gap: 16px; flex-wrap: wrap; border-bottom: 2px solid #f0f5fa; padding-bottom: 16px; margin-bottom: 10px; }
+.brand-section-title-group { display: flex; align-items: center; gap: 14px; flex-wrap: wrap; }
+.brand-section-title-group img { height: 50px; max-width: 165px; object-fit: contain; }
+.brand-section-title-group h2 { font-family: "Baloo 2", cursive; font-size: 28px; color: var(--ink); margin: 0; line-height: 1.15; }
+.brand-section-tagline { font-size: 13px; font-weight: 800; color: var(--orange); margin-top: 2px; }
+.brand-section-block.aavishkara .brand-section-tagline { color: var(--purple); }
+@media(max-width: 650px) { .brand-section-block { padding: 18px 14px; } .brand-section-title-group h2 { font-size: 22px; } }
 
 /* --- Inner Pages --- */
 

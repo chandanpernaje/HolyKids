@@ -1,37 +1,102 @@
 /**
- * Holy Kids Dedicated Email Service
+ * Holy Kids Dedicated Email Service with Anti-Bot & Spam Protection
  * 
- * Submits form data directly to the Holy Kids mail handler.
- * - On Vercel / Localhost: Uses local serverless /api/send-email (fastest, direct SMTP)
- * - On static cPanel: Falls back to the deployed backend on Render
+ * Submits form data directly to the Holy Kids backend API (/api/send-email and /api/contact).
+ * Includes:
+ * 1. Honeypot field inspection (blocks automated dumb bots)
+ * 2. Invisible Google reCAPTCHA v3 verification (blocks smart headless bots)
+ * 3. Rate-limited server submission
  */
 
 export const ADMIN_EMAIL = 'theholykidspublication@gmail.com';
 export const ADMIN_NAME = 'Holy Kids Publication';
 
+/**
+ * Loads and requests an invisible Google reCAPTCHA v3 token if configured.
+ * Gracefully returns null if no valid key is configured.
+ */
+async function getRecaptchaToken(action = 'submit') {
+  const siteKey = import.meta.env.VITE_RECAPTCHA_SITE_KEY;
+  if (!siteKey || siteKey === 'YOUR_RECAPTCHA_V3_SITE_KEY_HERE') {
+    return null;
+  }
+
+  return new Promise((resolve) => {
+    try {
+      const execute = () => {
+        if (window.grecaptcha && window.grecaptcha.execute) {
+          window.grecaptcha.ready(() => {
+            window.grecaptcha.execute(siteKey, { action }).then(resolve).catch(() => resolve(null));
+          });
+        } else {
+          resolve(null);
+        }
+      };
+
+      if (!window.grecaptcha) {
+        const scriptId = 'google-recaptcha-v3';
+        let script = document.getElementById(scriptId);
+        if (!script) {
+          script = document.createElement('script');
+          script.id = scriptId;
+          script.src = `https://www.google.com/recaptcha/api.js?render=${siteKey}`;
+          script.async = true;
+          script.onload = execute;
+          script.onerror = () => resolve(null);
+          document.head.appendChild(script);
+        } else {
+          script.addEventListener('load', execute);
+        }
+      } else {
+        execute();
+      }
+    } catch {
+      resolve(null);
+    }
+  });
+}
+
+/**
+ * Submits form inquiry to the Holy Kids backend mail handler
+ * 
+ * @param {Object} data - Form data
+ * @param {string} data.name - Sender full name
+ * @param {string} data.email - Sender email
+ * @param {string} [data.phone] - Contact phone number
+ * @param {string} [data.organization] - School or institution name
+ * @param {string} [data.schoolName] - Alternative alias for school name
+ * @param {string} [data.topic] - Subject or topic
+ * @param {string} data.message - Detailed inquiry message
+ * @param {string} [data._hp] - Honeypot field (must be empty for human users)
+ * @returns {Promise<{success: boolean, message?: string, provider?: string}>}
+ */
 export async function sendBookingEmail(data) {
+  // 1. Client-side Honeypot Check: Dumb bots automatically fill all input fields
+  if (data._hp && data._hp.trim() !== '') {
+    console.warn('[Anti-Spam] Bot detected via honeypot field. Suppressing request.');
+    // Pretend success so bot does not retry
+    return {
+      success: true,
+      provider: 'anti-spam',
+      message: 'Your inquiry has been received.'
+    };
+  }
+
+  // 2. Fetch invisible reCAPTCHA v3 token if configured
+  const recaptchaToken = await getRecaptchaToken('contact_form');
+
   const payload = {
     name: data.name,
     email: data.email,
     phone: data.phone || '',
     organization: data.organization || data.schoolName || '',
     topic: data.topic || 'General Inquiry',
-    message: data.message || ''
+    message: data.message || '',
+    _hp: data._hp || '',
+    recaptchaToken: recaptchaToken || ''
   };
 
-  // Endpoints to try in order:
-  // 1. Same-origin /api (works on local dev & same-origin hosting)
-  // 2. Working Vercel mail server (100% verified live backend)
-  // 3. Fallback Render server
-  const endpoints = [
-    '/api/send-email',
-    '/api/contact',
-    'https://backend-97df.vercel.app/api/send-email',
-    'https://backend-97df.vercel.app/api/contact',
-    'https://holykids-backend.onrender.com/api/send-email',
-    'https://holykids-backend.onrender.com/api/contact'
-  ];
-
+  const endpoints = ['/api/send-email', '/api/contact'];
   let lastError = null;
 
   for (const endpoint of endpoints) {
@@ -44,7 +109,6 @@ export async function sendBookingEmail(data) {
         body: JSON.stringify(payload)
       });
 
-      // If 404 (endpoint doesn't exist on this host), try the next fallback
       if (res.status === 404) {
         continue;
       }

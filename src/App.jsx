@@ -50,9 +50,11 @@ function App() {
         <Route path="/cart" element={<Cart />} />
         <Route path="/contact" element={<Contact />} />
         <Route path="/search" element={<Search />} />
-        <Route path="/beginner" element={<SeriesPage seriesId="beginner" />} />
-        <Route path="/junior" element={<SeriesPage seriesId="junior" />} />
-        <Route path="/senior" element={<SeriesPage seriesId="senior" />} />
+        <Route path="/play-group" element={<SeriesPage key="playgroup" seriesId="playgroup" />} />
+        <Route path="/playgroup" element={<SeriesPage key="playgroup" seriesId="playgroup" />} />
+        <Route path="/beginner" element={<SeriesPage key="beginner" seriesId="beginner" />} />
+        <Route path="/junior" element={<SeriesPage key="junior" seriesId="junior" />} />
+        <Route path="/senior" element={<SeriesPage key="senior" seriesId="senior" />} />
         <Route path="/book/:bookId" element={<BookDetails />} />
         <Route path="/how-it-works" element={<HowItWorks />} />
         <Route path="/how-it-works/" element={<HowItWorks />} />

@@ -9,6 +9,79 @@ import { dirname, resolve } from 'path';
 const __dirname = dirname(fileURLToPath(import.meta.url));
 dotenv.config({ path: resolve(__dirname, '..', '.env') });
 
+// Rate Limiting Map: ip -> { count: number, resetTime: number }
+const rateLimitMap = new Map();
+const RATE_LIMIT_WINDOW_MS = 10 * 60 * 1000; // 10 minutes
+const MAX_REQUESTS_PER_WINDOW = 5; // Max 5 submissions per 10 minutes per IP
+
+function getClientIp(req) {
+  const forwarded = req.headers['x-forwarded-for'];
+  if (forwarded) {
+    return forwarded.split(',')[0].trim();
+  }
+  return req.headers['x-real-ip'] || req.socket?.remoteAddress || '127.0.0.1';
+}
+
+function checkRateLimit(ip) {
+  const now = Date.now();
+  // Clean up expired entries periodically
+  if (rateLimitMap.size > 1000) {
+    for (const [key, data] of rateLimitMap.entries()) {
+      if (now > data.resetTime) rateLimitMap.delete(key);
+    }
+  }
+
+  const record = rateLimitMap.get(ip);
+  if (!record || now > record.resetTime) {
+    rateLimitMap.set(ip, { count: 1, resetTime: now + RATE_LIMIT_WINDOW_MS });
+    return { allowed: true };
+  }
+
+  if (record.count >= MAX_REQUESTS_PER_WINDOW) {
+    const retryAfterSec = Math.ceil((record.resetTime - now) / 1000);
+    return { allowed: false, retryAfterSec };
+  }
+
+  record.count += 1;
+  return { allowed: true };
+}
+
+/**
+ * Validates Google reCAPTCHA v3 token against Google siteverify API.
+ * Gracefully permits request if reCAPTCHA secret key is not configured.
+ */
+async function verifyRecaptcha(token) {
+  const secretKey = process.env.RECAPTCHA_SECRET_KEY;
+  if (!secretKey || secretKey === 'YOUR_RECAPTCHA_V3_SECRET_KEY_HERE') {
+    return { valid: true, skipped: true };
+  }
+
+  if (!token) {
+    return { valid: false, reason: 'reCAPTCHA token missing.' };
+  }
+
+  try {
+    const params = new URLSearchParams({
+      secret: secretKey,
+      response: token
+    });
+    const res = await fetch('https://www.google.com/recaptcha/api/siteverify', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+      body: params.toString()
+    });
+    const data = await res.json();
+    if (data.success && typeof data.score === 'number' && data.score >= 0.5) {
+      return { valid: true, score: data.score };
+    }
+    return { valid: false, score: data.score, reason: 'reCAPTCHA score too low or failed verification.' };
+  } catch (err) {
+    console.error('[Anti-Bot] reCAPTCHA verify network error:', err);
+    // Don't block real users if Google API is temporarily unreachable
+    return { valid: true, skipped: true };
+  }
+}
+
 /**
  * Creates Nodemailer Transporter supporting:
  * 1. Custom SMTP (SMTP_HOST, SMTP_PORT, SMTP_USER, SMTP_PASS)
@@ -95,7 +168,38 @@ export default async function handler(req, res) {
     return res.status(405).json({ success: false, error: 'Method not allowed. Only POST is supported.' });
   }
 
-  const { name, email, message, phone, organization, schoolName, topic } = req.body || {};
+  const { name, email, message, phone, organization, schoolName, topic, _hp, recaptchaToken } = req.body || {};
+  const clientIp = getClientIp(req);
+
+  // 1. Honeypot Check: Automated bots populate hidden fields
+  if (_hp && String(_hp).trim() !== '') {
+    console.warn(`[Anti-Bot] Spam submission intercepted via honeypot field from IP: ${clientIp}`);
+    // Respond with fake 200 so bots think they succeeded and stop retrying
+    return res.status(200).json({
+      success: true,
+      message: 'Inquiry successfully delivered to Admin!'
+    });
+  }
+
+  // 2. IP-based Rate Limiting (5 requests per 10 minutes)
+  const rateLimit = checkRateLimit(clientIp);
+  if (!rateLimit.allowed) {
+    console.warn(`[Anti-Bot] Rate limit exceeded for IP: ${clientIp}`);
+    return res.status(429).json({
+      success: false,
+      error: `Too many submissions from this connection. Please wait ${Math.ceil(rateLimit.retryAfterSec / 60)} minute(s) before trying again.`
+    });
+  }
+
+  // 3. reCAPTCHA v3 Verification (if secret key configured)
+  const recaptchaResult = await verifyRecaptcha(recaptchaToken);
+  if (!recaptchaResult.valid) {
+    console.warn(`[Anti-Bot] reCAPTCHA verification failed for IP: ${clientIp} (${recaptchaResult.reason})`);
+    return res.status(403).json({
+      success: false,
+      error: 'Security verification failed. If you are human, please call our direct helpline: +91 99880 46446.'
+    });
+  }
 
   if (!email || !name) {
     return res.status(400).json({ success: false, error: 'Name and email are required fields.' });

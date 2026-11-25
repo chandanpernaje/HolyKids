@@ -6,6 +6,7 @@ export interface BookingFormData {
   phone?: string;
   topic?: string;
   message: string;
+  _hp?: string;
 }
 
 export interface SendEmailResult {

@@ -11,6 +11,7 @@ export default function Footer() {
           </div>
           <div>
             <h4>Explore</h4>
+            <Link to="/play-group">Play Group</Link>
             <Link to="/beginner">Beginner Series</Link>
             <Link to="/junior">Junior Series</Link>
             <Link to="/senior">Senior Series</Link>

@@ -1,15 +1,19 @@
 import { useEffect, useState } from 'react';
+import { useLocation } from 'react-router-dom';
 import { sendBookingEmail } from '../services/emailService';
 
 export default function Contact() {
-  const [formData, setFormData] = useState({ name: '', email: '', message: '' });
+  const location = useLocation();
+  const queryTopic = new URLSearchParams(location.search).get('topic') || '';
+  const defaultMessage = queryTopic ? `I would like more details regarding ${queryTopic}.` : '';
+  const [formData, setFormData] = useState({ name: '', email: '', message: defaultMessage, _hp: '' });
   const [errors, setErrors] = useState({});
   const [submitted, setSubmitted] = useState(false);
   const [sending, setSending] = useState(false);
 
   useEffect(() => {
     window.scrollTo(0, 0);
-  }, []);
+  }, [queryTopic]);
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -32,12 +36,13 @@ export default function Contact() {
           name: formData.name,
           email: formData.email,
           message: formData.message,
-          topic: 'Website Contact Form'
+          topic: queryTopic || 'Website Contact Form',
+          _hp: formData._hp
         });
 
         if (result.success) {
           setSubmitted(true);
-          setFormData({ name: '', email: '', message: '' });
+          setFormData({ name: '', email: '', message: '', _hp: '' });
         } else {
           alert("Notice: " + (result.message || "Failed to send message. Please try again or call +91 99880 46446."));
         }
@@ -71,6 +76,18 @@ export default function Contact() {
             </div>
           ) : (
             <form onSubmit={handleSubmit} className="form-grid" style={{ gridTemplateColumns: '1fr' }} noValidate>
+              {/* Invisible honeypot field - traps automated bots */}
+              <div style={{ display: 'none', position: 'absolute', left: '-9999px', opacity: 0 }} aria-hidden="true">
+                <input
+                  type="text"
+                  name="_hp"
+                  value={formData._hp}
+                  onChange={handleChange}
+                  tabIndex="-1"
+                  autoComplete="off"
+                />
+              </div>
+
               <div className="form-group full" style={{ marginBottom: errors.name ? '10px' : '20px' }}>
                 <label>Full Name</label>
                 <input type="text" name="name" value={formData.name} onChange={handleChange} placeholder="Your Name" style={{ borderColor: errors.name ? 'var(--pink)' : '' }} />

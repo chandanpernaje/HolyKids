@@ -8,7 +8,7 @@ export default function BookDetails() {
   const { bookId } = useParams();
   const book = getBookById(bookId);
   
-  const [formData, setFormData] = useState({ quantity: 1, name: '', email: '', phone: '' });
+  const [formData, setFormData] = useState({ quantity: 1, name: '', email: '', phone: '', _hp: '' });
   const [errors, setErrors] = useState({});
   const [submitted, setSubmitted] = useState(false);
   const [sending, setSending] = useState(false);
@@ -48,13 +48,14 @@ export default function BookDetails() {
           name: formData.name,
           email: formData.email,
           phone: formData.phone,
-          topic: `Book Request - ${book.title} (${book.seriesName})`,
-          message: `Book: ${book.title}\nSeries: ${book.seriesName}\nQuantity: ${formData.quantity}\nPhone: ${formData.phone}`
+          topic: `Book Request - ${book.title} (${book.brandName ? `${book.brandName} - ` : ''}${book.seriesName})`,
+          message: `Book: ${book.title}\nBrand: ${book.brandName || 'Holy Kids'}\nSeries: ${book.seriesName}\nQuantity: ${formData.quantity}\nPhone: ${formData.phone}`,
+          _hp: formData._hp
         });
 
         if (result.success) {
           setSubmitted(true);
-          setFormData({ quantity: 1, name: '', email: '', phone: '' });
+          setFormData({ quantity: 1, name: '', email: '', phone: '', _hp: '' });
         } else {
           alert("Notice: " + (result.message || "Failed to send request. Please try again or call +91 99880 46446."));
         }
@@ -73,7 +74,7 @@ export default function BookDetails() {
         <div className="breadcrumb">
           <Link to="/">Home</Link>
           <span>›</span>
-          <Link to={`/${book.seriesId}`}>{book.seriesName}</Link>
+          <Link to={book.seriesRoute || `/${book.seriesId}`}>{book.brandName ? `${book.brandName} — ${book.seriesName}` : book.seriesName}</Link>
           <span>›</span>
           <span style={{color: 'var(--orange)', fontWeight: '800'}}>{book.title}</span>
         </div>
@@ -88,6 +89,7 @@ export default function BookDetails() {
           <div className="book-info">
             <h1>{book.title}</h1>
             <div className="book-meta">
+              {book.brandName && <span>{book.brandName}</span>}
               <span>{book.seriesName}</span>
               <span>{book.type}</span>
               <span className="subject">{book.subject}</span>
@@ -134,6 +136,17 @@ export default function BookDetails() {
               </div>
             ) : (
               <form onSubmit={handleRequestSubmit} className="form-grid" noValidate>
+                {/* Invisible honeypot field - traps automated bots */}
+                <div style={{ display: 'none', position: 'absolute', left: '-9999px', opacity: 0 }} aria-hidden="true">
+                  <input
+                    type="text"
+                    name="_hp"
+                    value={formData._hp}
+                    onChange={handleChange}
+                    tabIndex="-1"
+                    autoComplete="off"
+                  />
+                </div>
                 <div className="form-group">
                   <label>Selected Series</label>
                   <input type="text" value={book.seriesName} readOnly style={{background: '#f0f4f8'}} />

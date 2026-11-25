@@ -5,7 +5,9 @@ export default function BookCard({ book }) {
     <Link to={`/book/${book.id}`} className="book-card">
       <img src={book.coverImage} alt={book.title} />
       <div className="book-card-content">
-        <span className="type">{book.type}</span>
+        <span className="type">
+          {book.brandName ? `${book.brandName} • ${book.type}` : book.type}
+        </span>
         <h4>{book.title}</h4>
         <p>{book.shortDesc}</p>
         <span className="view-btn">View Details →</span>
